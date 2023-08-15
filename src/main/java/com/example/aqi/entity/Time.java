@@ -1,5 +1,8 @@
 package com.example.aqi.entity;
 
+import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,6 +19,10 @@ public class Time {
     private String tz;
     private long v;
     private String iso;
+	
+	public OffsetDateTime getoffsetDateTime(){
+		ZoneOffset zoneOffset = ZoneOffset.of(this.tz);
+		return OffsetDateTime.now(zoneOffset);}
 
 	public String getS() {
 		return s;
@@ -23,6 +30,14 @@ public class Time {
 
 	public void setS(String s) {
 		this.s = s;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getTz() {
