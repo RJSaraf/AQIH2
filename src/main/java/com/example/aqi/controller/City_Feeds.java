@@ -46,7 +46,7 @@ public class City_Feeds {
             model.addObject("msg", "Unknown Station");
         } else {
             model.addObject("msg", service.getAirQualityData().get(service.getAirQualityData().size()-1).getData().getCity().getName().toString());
-            System.out.println("sucesst");
+            System.out.println("sucess");
         }
         return model;
     }

@@ -27,7 +27,6 @@ public class AQD_Service {
 		String url = "https://api.waqi.info/feed/" + cityname + "/?token=" + token;
 		System.out.println(url);
 		ResponseEntity<String> response = rt.getForEntity(url, String.class);
-
 		if (response.getStatusCode().is2xxSuccessful()) {
 			String responseData = response.getBody();
 			try {
