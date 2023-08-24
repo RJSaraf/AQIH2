@@ -23,9 +23,9 @@
     <body class="bg-image" style="background-color: #F0F2F5;">
         <div class="d-flex align-content-center" style="height: 650px; width: 100%;">
             <div
-                class=" rounded-3 p-5 text-white text-center border border-1 border-black col-lg-5 col-sm-12 mx-auto my-auto shadow">
+                class="rounded-3 p-5 text-white text-center border border-1 border-black col-lg-5 col-sm-12 mx-auto my-auto shadow">
     
-                <div class="bg-danger col-lg-10 mx-auto col-sm-10 rounded-3 border border-1 border-black">
+                <div class="my-2 bg-danger col-lg-12 col-sm-10 rounded-3 border border-1 border-black">
                     <h1>Air Qualitys Index</h1>
                     <p style="font-size:medium;">Real-time Air Quality data feed</p>
                 </div>
