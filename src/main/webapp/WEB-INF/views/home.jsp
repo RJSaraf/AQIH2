@@ -23,14 +23,14 @@
     <body class="bg-image" style="background-color: #F0F2F5;">
         <div class="d-flex align-content-center" style="height: 650px; width: 100%;">
             <div
-                class="rounded-3 p-5 text-white text-center border border-1 border-black col-lg-5 col-sm-12 mx-auto my-auto shadow">
+                class="row rounded-3 p-5 text-white text-center border border-1 border-black col-lg-5 col-sm-12 mx-auto my-auto shadow">
     
-                <div class="my-2 bg-danger col-lg-12 col-sm-10 rounded-3 border border-1 border-black">
+                <div class="my-2 bg-danger col-lg-12 col-sm-12 rounded-3 border border-1 border-black">
                     <h1>Air Qualitys Index</h1>
                     <p style="font-size:medium;">Real-time Air Quality data feed</p>
                 </div>
     
-                <div class="d-flex col-lg-9 col-sm-auto mx-auto p-2">
+                <div class="d-flex col-lg-9 col-sm-6 col-sm-auto mx-auto p-2">
                     <form class="d-flex w-100  mx-auto" method="post" action="feeds">
                         <input type="text" name="cityname" placeholder="Enter city name" class=" p-2 col-10">
                         <button class="btn btn-primary fa fa-search bg-primary rounded-0 flex-fill " type="submit"></button>
