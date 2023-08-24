@@ -20,8 +20,37 @@ public class City_Feeds {
     @Autowired
     private AQD_Service service;
 
+
     @GetMapping("")
     public ModelAndView home() {
+        ModelAndView model = new ModelAndView("home");
+        return model;
+    }
+
+    @PostMapping("feeds")
+    public ModelAndView getcityfeed(@RequestParam("cityname") String cityname) {
+        ModelAndView model = new ModelAndView("city_feed");
+        AirQualityData data = service.getfeed(cityname, "ce23c20a23107ba42e95da543b4e84862bfd5230");
+            if (data == null) {
+                model.addObject("message", "Unknown Station");
+            } else {
+                model.addObject("data", data);
+                model.addObject("message",  data.getData().getCity().getName().toString());
+                System.out.println("sucess");
+            }
+        return model;
+    }
+       
+    
+  
+
+
+
+
+
+
+  /*   @GetMapping("/savecityfeeds")
+    public ModelAndView home1() {
         ModelAndView model = new ModelAndView("home");
         List<AirQualityData> data = service.getAirQualityData();
         Collections.reverse(data);
@@ -49,6 +78,6 @@ public class City_Feeds {
             System.out.println("sucess");
         }
         return model;
-    }
+    } */
 
 }

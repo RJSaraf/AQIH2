@@ -23,6 +23,23 @@ public class AQD_Service {
 	@Autowired
 	ApiApplication_DB dao;
 
+	public AirQualityData getfeed(String cityname, String token) {
+		String url = "https://api.waqi.info/feed/" + cityname + "/?token=" + token;
+		System.out.println(url);
+		ResponseEntity<String> response = rt.getForEntity(url, String.class);
+		if (response.getStatusCode().is2xxSuccessful()) {
+			String responseData = response.getBody();
+			try {
+				AirQualityData airQualityData = objectMapper.readValue(responseData, AirQualityData.class);
+				return airQualityData;
+			} catch (Exception e) {
+				System.out.println("Exception occur - " + e);
+				return null;
+			}
+		}
+		return null;
+	}
+
 	public AirQualityData savefeeds(String cityname, String token) {
 		String url = "https://api.waqi.info/feed/" + cityname + "/?token=" + token;
 		System.out.println(url);
