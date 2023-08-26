@@ -1,7 +1,6 @@
 package com.example.aqi.entity;
 
 import java.util.List;
-
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
