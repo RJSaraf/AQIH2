@@ -1,9 +1,17 @@
 package com.example.aqi.entity;
 
 import java.util.List;
+<<<<<<< HEAD
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+=======
+import jakarta.persistence.ElementCollection;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+>>>>>>> d061736b3d6a4be78a28ed98c5da78af4fef817a
 
 
 @Document

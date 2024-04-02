@@ -161,8 +161,12 @@
                             </div>
                             <div class="my-3 col-12 d-flex justify-content-end"><a style="text-decoration: none;"
                                     href="${data.data.city.url}"><span class="display-3 text-white"
+<<<<<<< HEAD
                                         style="text-shadow: 0 0 15px black;">${String.valueOf(data.data.iaqi.t.v).substring(0, 2)}
                                             
+=======
+                                        style="text-shadow: 0 0 15px black;">${data.getData().getIaqi().getT().getV()}
+>>>>>>> d061736b3d6a4be78a28ed98c5da78af4fef817a
                                         &degC</span></a>
                             </div>
                             <div class="my-3 col-12 d-inline-flex row">
