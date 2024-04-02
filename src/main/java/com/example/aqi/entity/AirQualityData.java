@@ -1,30 +1,18 @@
 package com.example.aqi.entity;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
-@Entity
+@Document
 public class AirQualityData {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    
-    private String status;
-    
-    @OneToOne(cascade = CascadeType.ALL)
-    private Data data;
+	@Id
+	private String id;
 
-	public Long getId() {
-		return id;
-	}
+	private String status;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+	@Field("data")
+	private Data data;
 
 	public String getStatus() {
 		return status;
@@ -40,4 +28,5 @@ public class AirQualityData {
 
 	public void setData(Data data) {
 		this.data = data;
-	}}
+	}
+}

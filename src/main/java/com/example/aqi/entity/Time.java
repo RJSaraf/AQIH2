@@ -1,16 +1,16 @@
 package com.example.aqi.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 
-@Entity
+@Document
 public class Time {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
     
     private String s;
     private String tz;
@@ -53,5 +53,9 @@ public class Time {
 	public String toString() {
 		return "Time [s=" + s + ", tz=" + tz + ", v=" + v + ", iso=" + iso + "]";
 	}
+
+	public OffsetDateTime getoffsetDateTime(){
+		ZoneOffset zoneOffset = ZoneOffset.of(this.tz);
+		return OffsetDateTime.now(zoneOffset);}
 
 }

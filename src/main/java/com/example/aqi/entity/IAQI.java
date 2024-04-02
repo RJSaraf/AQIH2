@@ -1,61 +1,39 @@
 package com.example.aqi.entity;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 
 
-@Entity
+@Document
 public class IAQI {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
     
-    @OneToOne(cascade = CascadeType.ALL)
     private Valuedata co;
     
-    @OneToOne(cascade = CascadeType.ALL)
     private Valuedata dew;
     
-    @OneToOne(cascade = CascadeType.ALL)
     private Valuedata h;
     
-    @OneToOne(cascade = CascadeType.ALL)
     private Valuedata no2;
     
-    @OneToOne(cascade = CascadeType.ALL)
     private Valuedata o3;
     
-    @OneToOne(cascade = CascadeType.ALL)
     private Valuedata p;
     
-    @OneToOne(cascade = CascadeType.ALL)
     private Valuedata pm10;
     
-    @OneToOne(cascade = CascadeType.ALL)
     private Valuedata pm25;
     
-    @OneToOne(cascade = CascadeType.ALL)
     private Valuedata so2;
     
-    @OneToOne(cascade = CascadeType.ALL)
     private Valuedata t;
     
-    @OneToOne(cascade = CascadeType.ALL)
     private Valuedata w;
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
+	private Valuedata wg;
+	
 	public Valuedata getWg() {
 		return wg;
 	}
@@ -64,8 +42,6 @@ public class IAQI {
 		this.wg = wg;
 	}
 
-	@OneToOne(cascade = CascadeType.ALL)
-    private Valuedata wg;
 
 	public Valuedata getCo() {
 		return co;

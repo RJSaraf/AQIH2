@@ -8,10 +8,10 @@ import org.springframework.web.client.RestTemplate;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @SpringBootApplication
-public class AqIndexH2Application {
+public class AqIndexMongoApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(AqIndexH2Application.class, args);
+		SpringApplication.run(AqIndexMongoApplication.class, args);
 	}
 @Bean
 	RestTemplate restTamplate() {

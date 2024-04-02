@@ -2,52 +2,29 @@ package com.example.aqi.entity;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
-
-@Entity
+@Document
 public class Data {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private String id;
 
 	private int aqi;
 	private int idx;
 	private String dominentpol;
 
-	@OneToMany(cascade = CascadeType.ALL)
 	private List<Attribution> attributions;
 
-	@OneToOne(cascade = CascadeType.ALL)
 	private City city;
 
-	@OneToOne(cascade = CascadeType.ALL)
 	private IAQI iaqi;
 
-	@OneToOne(cascade = CascadeType.ALL)
 	private Time time;
 
-	@OneToOne(cascade = CascadeType.ALL)
 	private Forecast forecast;
 
-	@OneToOne(cascade = CascadeType.ALL)
 	private Debug debug;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	public int getAqi() {
 		return aqi;

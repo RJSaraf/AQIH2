@@ -1,6 +1,5 @@
 package com.example.aqi.controller;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -25,20 +24,23 @@ public class City_Feeds {
         ModelAndView model = new ModelAndView("home");
         List<AirQualityData> data = service.getAirQualityData();
         Collections.reverse(data);
-        model.addObject("listofdata", data);
+        model.addObject("listOfData", data);
         return model;
     }
 
-    @PostMapping(path = "feeds")
-    public ModelAndView putDataFromAPI(@RequestParam("cityname") String cityname) {
-        ModelAndView model = new ModelAndView("home");
-        if (service.savefeeds(cityname, "ce23c20a23107ba42e95da543b4e84862bfd5230") == null) {
-            model.addObject("message", "Unknown Station");
-        }
-        List<AirQualityData> data = service.getAirQualityData();
-        Collections.reverse(data);
-        model.addObject("listofdata", data);
-        System.out.println("sucess");
+    @PostMapping("feeds")
+    public ModelAndView putDataFromAPI(@RequestParam("cityname") String cityName) {
+
+        ModelAndView model = new ModelAndView("city_feed");
+        AirQualityData data = service.getfeed(cityName, "ce23c20a23107ba42e95da543b4e84862bfd5230");
+            if (data == null) {
+                model.addObject("message", "Unknown Station");
+            } else {
+                service.savefeeds(cityName,"ce23c20a23107ba42e95da543b4e84862bfd5230");
+                model.addObject("data", data);
+                model.addObject("message",  data.getData().getCity().getName().toString());
+                System.out.println("sucess");
+            }
         return model;
     }
 
