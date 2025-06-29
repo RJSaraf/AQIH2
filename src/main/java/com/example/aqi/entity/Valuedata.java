@@ -1,27 +1,30 @@
 package com.example.aqi.entity;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
-@Document
+@Entity
 public class Valuedata {
+
     @Id
-    private String id;
-    
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
     private double v;
-    
 
-	public double getV() {
-		return v;
-	}
+    public double getV() {
+        return v;
+    }
 
-	public void setV(double v) {
-		this.v = v;
-	}
+    public void setV(double v) {
+        this.v = v;
+    }
 
-	@Override
-	public String toString() {
-		return "Value [v=" + v + "]";
-	}
+    @Override
+    public String toString() {
+        return "Value [v=" + v + "]";
+    }
 
 }

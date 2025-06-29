@@ -1,32 +1,33 @@
 package com.example.aqi.entity;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
+import jakarta.persistence.*;
 
-@Document
+@Entity
 public class AirQualityData {
-	@Id
-	private String id;
 
-	private String status;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
-	@Field("data")
-	private Data data;
+    private String status;
 
-	public String getStatus() {
-		return status;
-	}
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "data_id", referencedColumnName = "id")
+    private Data data;
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
+    public String getStatus() {
+        return status;
+    }
 
-	public Data getData() {
-		return data;
-	}
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
-	public void setData(Data data) {
-		this.data = data;
-	}
+    public Data getData() {
+        return data;
+    }
+
+    public void setData(Data data) {
+        this.data = data;
+    }
 }

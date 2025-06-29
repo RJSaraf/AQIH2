@@ -1,26 +1,30 @@
 package com.example.aqi.entity;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 
-@Document
+@Entity
 public class Debug {
+
     @Id
-    private String id;
-    
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
     private String sync;
 
-	public String getSync() {
-		return sync;
-	}
+    public String getSync() {
+        return sync;
+    }
 
-	public void setSync(String sync) {
-		this.sync = sync;
-	}
+    public void setSync(String sync) {
+        this.sync = sync;
+    }
 
-	@Override
-	public String toString() {
-		return "Debug [sync=" + sync + "]";
-	}
+    @Override
+    public String toString() {
+        return "Debug [sync=" + sync + "]";
+    }
 }

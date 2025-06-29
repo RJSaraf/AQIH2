@@ -1,61 +1,65 @@
 package com.example.aqi.entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-
-@Document
+@Entity
 public class Time {
+
     @Id
-    private String id;
-    
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
     private String s;
     private String tz;
     private long v;
     private String iso;
 
-	public String getS() {
-		return s;
-	}
+    public String getS() {
+        return s;
+    }
 
-	public void setS(String s) {
-		this.s = s;
-	}
+    public void setS(String s) {
+        this.s = s;
+    }
 
-	public String getTz() {
-		return tz;
-	}
+    public String getTz() {
+        return tz;
+    }
 
-	public void setTz(String tz) {
-		this.tz = tz;
-	}
+    public void setTz(String tz) {
+        this.tz = tz;
+    }
 
-	public long getV() {
-		return v;
-	}
+    public long getV() {
+        return v;
+    }
 
-	public void setV(long v) {
-		this.v = v;
-	}
+    public void setV(long v) {
+        this.v = v;
+    }
 
-	public String getIso() {
-		return iso;
-	}
+    public String getIso() {
+        return iso;
+    }
 
-	public void setIso(String iso) {
-		this.iso = iso;
-	}
+    public void setIso(String iso) {
+        this.iso = iso;
+    }
 
-	@Override
-	public String toString() {
-		return "Time [s=" + s + ", tz=" + tz + ", v=" + v + ", iso=" + iso + "]";
-	}
+    @Override
+    public String toString() {
+        return "Time [s=" + s + ", tz=" + tz + ", v=" + v + ", iso=" + iso + "]";
+    }
 
-	public OffsetDateTime getoffsetDateTime(){
-		ZoneOffset zoneOffset = ZoneOffset.of(this.tz);
-		return OffsetDateTime.now(zoneOffset);}
+    public OffsetDateTime getoffsetDateTime() {
+        ZoneOffset zoneOffset = ZoneOffset.of(this.tz);
+        return OffsetDateTime.now(zoneOffset);
+    }
 
 }

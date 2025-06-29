@@ -1,29 +1,31 @@
 package com.example.aqi.entity;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
+import jakarta.persistence.*;
 
 
-
-@Document
+@Entity
 public class Forecast {
+
     @Id
-    private String id;
-    @Field("daily")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "daily_id", referencedColumnName = "id")
     private Daily daily;
 
-	public Daily getDaily() {
-		return daily;
-	}
 
-	public void setDaily(Daily daily) {
-		this.daily = daily;
-	}
+    public Daily getDaily() {
+        return daily;
+    }
 
-	@Override
-	public String toString() {
-		return "Forecast [daily=" + daily + "]";
-	}
-	
+    public void setDaily(Daily daily) {
+        this.daily = daily;
+    }
+
+    @Override
+    public String toString() {
+        return "Forecast [daily=" + daily + "]";
+    }
+
 }
