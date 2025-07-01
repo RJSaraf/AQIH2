@@ -13,7 +13,8 @@ public class AQI_Application {
 	public static void main(String[] args) {
 		SpringApplication.run(AQI_Application.class, args);
 	}
-@Bean
+
+	@Bean
 	RestTemplate restTamplate() {
 		return new RestTemplate();
 	}
@@ -22,4 +23,5 @@ public class AQI_Application {
 	ObjectMapper objectMapper() {
 		return new ObjectMapper();
 	}
+
 }

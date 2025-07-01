@@ -64,9 +64,8 @@
             <version>2.14.1</version>
         </dependency>
         <dependency>
-            <groupId>com.example.aqi</groupId>
-            <artifactId>aqi</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
     </dependencies>
     <build>

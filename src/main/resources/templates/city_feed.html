@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>AQI Data Table</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .bg-image {
+            background-image: url("https://i.imgur.com/Yt7Q05H.jpg");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body style="background-color: #F0F2F5;">
+
+<div class="p-5 bg-primary text-white text-center bg-image border border-black">
+    <h1 class="m-5 display-3" style="text-shadow: -1px 1px 0 #000,
+                    1px 1px 0 #000,
+                   1px -1px 0 #000,
+                  -1px -1px 0 #000;">AQI</h1>
+</div>
+
+<div class="sticky-top d-flex align-content-lg-start p-1" style="background-color: teal;">
+    <form class="d-flex w-25 me-3" method="post" action="feeds">
+        <input type="text" name="cityname" placeholder="Enter city name" class="p-2 col-10">
+        <button class="btn btn-primary fa fa-search bg-primary rounded-0 flex-fill" type="submit"></button>
+    </form>
+    <div class="col-5 my-2 align-self-center fa fa-map-marker text-white">
+        <span style="font-size: large;" th:text="${message}"></span>
+    </div>
+</div>
+
+<br>
+
+<div th:if="${data != null}">
+    <div class="row col-12">
+        <div class="col-sm-12 d-inline-flex row mx-auto mb-5">
+            <div class="container mb-sm-5 mx-auto align-content-center col-lg-4 col-sm-10 rounded-3 bg-white shadow"
+                 style="height: 450px;">
+                <div class="card border border-0">
+                    <div class="d-flex card-body row shadow">
+                        <div class="justify-content-center mx-auto px-2 d-flex container shadow rounded-3 col-sm-3 align-self-center"
+                             th:classappend="${aqiClass}">
+                            <span class="text-align-center text-black" style="font-size: 45px;" th:text="${data.data.aqi}"></span>
+                        </div>
+                        <div class="mx-auto col-sm-7">
+                            <div class="row">
+                                <span class="display-6" th:text="${aqiLabel}"></span>
+                            </div>
+                            <div class="row">
+                                <h6><small>Updated on <span class="text-primary" th:text="${data.data.time.s}"></span></small></h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <style>
+                    .widgetcardMorning {
+                        background-image: url("https://cdn.dribbble.com/userupload/4243243/file/original-fa8ca68e8bea23bba849304202f7fecf.jpeg?resize=400x300&vertical=center");
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                        background-position: center;
+                    }
+                    .widgetcardAfternoon {
+                        background-image: url("https://cdn.dribbble.com/users/1526156/screenshots/14572539/media/e5db42e5793729bdc67df4cb057c5d88.jpg?resize=400x300&vertical=center");
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                        background-position: center;
+                    }
+                    .widgetcardEvening {
+                        background-image: url("https://cdn.dribbble.com/users/1684108/screenshots/14890865/media/42c940a5093026b154ecee77444d607b.jpg?resize=400x300&vertical=center");
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                        background-position: center;
+                    }
+                    .widgetcardNight {
+                        background-image: url("https://cdn.dribbble.com/users/288987/screenshots/13797725/campfire.png?resize=400x300&vertical=center");
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                        background-position: center;
+                    }
+                    .bg-subtle-green {
+                        background-color: #01db5b8b;
+                    }
+                    .bg-yellow {
+                        background-color: yellow;
+                    }
+                    .bg-purple {
+                        background-color: purple;
+                    }
+                    .bg-brown {
+                        background-color: brown;
+                    }
+                </style>
+
+                <div class="row border" th:classappend="${timeClass}">
+                    <div class="my-3 col-12 d-flex justify-content-start">
+                        <a style="text-decoration: none;" th:href="${data.data.city.url}">
+            <span style="font-size: x-large;color: white;text-shadow: 0 0 15px black;">
+                <small th:text="${data.data.city.name}"></small>
+            </span>
+                        </a>
+                    </div>
+                    <div class="my-3 col-12 d-flex justify-content-end">
+                        <a style="text-decoration: none;" th:href="${data.data.city.url}">
+            <span class="display-3 text-white" style="text-shadow: 0 0 15px black;">
+                <span th:text="${#strings.substring(data.data.iaqi.t.v.toString(), 0, 2)}"></span>&deg;C
+            </span>
+                        </a>
+                    </div>
+                    <div class="my-3 col-12 d-inline-flex row">
+                        <div class="col-6">
+                            <a style="text-decoration: none;" th:href="${data.data.city.url}">
+                <span class="display-4 text-white" style="text-shadow: 0 0 15px black;"
+                      th:text="${offset.hour + ':' + (offset.minute < 10 ? '0' + offset.minute : offset.minute)}"></span><br>
+                                <span class="text-white" style="font-size: large;text-shadow: 0 0 15px black;"
+                                      th:text="${offset.dayOfWeek + ', ' + offset.dayOfMonth + ' ' + offset.month + ' ' + offset.year}"></span>
+                            </a>
+                        </div>
+                        <div class="col-6 align-self-end">
+                            <span class="text-white float-end" style="text-shadow: 0 0 15px black;" th:text="${greeting}"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="container mx-auto align-content-center col-lg-7 col-sm-10 rounded-3 bg-white shadow">
+                <div class="card border border-0">
+                    <div class="row d-inline-flex p-3">
+                        <div class="col-3 p-2"><b>Dominent Pollutant</b></div>
+                        <div class="col-9 p-2" th:text="${data.data.dominentpol}"></div>
+                    </div>
+                    <div class="row d-inline-flex p-3 bg-dark-subtle">
+                        <div class="col-2 p-2"><b>Links</b></div>
+                        <div class="col-10 p-2">
+                            <th:block th:each="attr : ${data.data.attributions}">
+                                <span style="font-size: medium;"><a th:href="${attr.url}" th:text="${attr.name}"></a></span>
+                                <hr>
+                            </th:block>
+                        </div>
+                    </div>
+                    <div class="row d-inline-flex p-3">
+                        <div class="col-3 p-2"><b>Geo Coordinates</b></div>
+                        <div class="col-9 p-2" th:text="${data.data.city.geo[0] + ', ' + data.data.city.geo[1]}"></div>
+                    </div>
+                    <div class="row d-inline-flex p-3">
+                        <div class="col-3 p-2"><b>Timezone</b></div>
+                        <div class="col-9 p-2" th:text="${data.data.time.tz}"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-12 d-inline-flex row mx-auto mb-5">
+            <div class="container col-sm-10 rounded-3 bg-white shadow">
+                <h4>IAQI</h4>
+                <div class="card border border-0 m-2 p-2 bg-dark-subtle">
+                    <div class="row d-inline-flex p-3">
+                        <div class="col-6 p-2"><b>Carbon monoxide (co)</b>: <span th:text="${data.data.iaqi.co?.v} ?: 'N/A'"></span></div>
+                        <div class="col-6 p-2"><b>Dew</b>: <span th:text="${data.data.iaqi.dew?.v} ?: 'N/A'"></span></div>
+                        <div class="col-6 p-2"><b>Relative Humidity (h)</b>: <span th:text="${data.data.iaqi.h?.v} ?: 'N/A'"></span></div>
+                        <div class="col-6 p-2"><b>Nitrogen Dioxide (no2)</b>: <span th:text="${data.data.iaqi.no2?.v} ?: 'N/A'"></span></div>
+                        <div class="col-6 p-2"><b>Ozone (o3)</b>: <span th:text="${data.data.iaqi.o3?.v} ?: 'N/A'"></span></div>
+                        <div class="col-6 p-2"><b>Atmospheric Pressure (p)</b>: <span th:text="${data.data.iaqi.p?.v} ?: 'N/A'"></span></div>
+                        <div class="col-6 p-2"><b>PM10</b>: <span th:text="${data.data.iaqi.pm10?.v} ?: 'N/A'"></span></div>
+                        <div class="col-6 p-2"><b>PM2.5</b>: <span th:text="${data.data.iaqi.pm25?.v} ?: 'N/A'"></span></div>
+                        <div class="col-6 p-2"><b>Sulfur dioxide (so2)</b>: <span th:text="${data.data.iaqi.so2?.v} ?: 'N/A'"></span></div>
+                        <div class="col-6 p-2"><b>Temperature (t)</b>: <span th:text="${data.data.iaqi.t?.v} ?: 'N/A'"></span></div>
+                        <div class="col-6 p-2"><b>Wind Speed (w)</b>: <span th:text="${data.data.iaqi.w?.v} ?: 'N/A'"></span></div>
+                        <div class="col-6 p-2"><b>Gust Wind Speed (wg)</b>: <span th:text="${data.data.iaqi.wg?.v} ?: 'N/A'"></span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--------------------------------------------------------------------------------------------------------------->
+
+        <!-- Ozone (O3) Forecast Table -->
+        <div class="col-sm-12 d-inline-flex row mx-auto mb-5">
+            <div class="container col-sm-10 rounded-3 bg-white shadow">
+                <h4>Forecast - Ozone (O3)</h4>
+                <div class="card border border-0 m-2 p-2 bg-dark-subtle">
+                    <table>
+                        <tr>
+                            <th>Date</th>
+                            <th>Avg</th>
+                            <th>Max</th>
+                            <th>Min</th>
+                        </tr>
+                        <tr th:each="row : ${o3Rows}">
+                            <td class="bg-dark-subtle" th:text="${row.day}"></td>
+                            <td th:classappend="${row.avgClass} + ' border border-white text-white'" th:text="${row.avg}"></td>
+                            <td th:classappend="${row.maxClass} + ' border border-white text-white'" th:text="${row.max}"></td>
+                            <td th:classappend="${row.minClass} + ' border border-white text-white'" th:text="${row.min}"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- PM10 Forecast Table -->
+        <div class="col-sm-12 d-inline-flex row mx-auto mb-5">
+            <div class="container col-sm-10 rounded-3 bg-white shadow">
+                <h4>Forecast - PM10</h4>
+                <div class="card border border-0 m-2 p-2 bg-dark-subtle">
+                    <table>
+                        <tr class="bg-dark-subtle">
+                            <th>Date</th>
+                            <th>Avg</th>
+                            <th>Max</th>
+                            <th>Min</th>
+                        </tr>
+                        <tr th:each="row : ${pm10Rows}">
+                            <td class="bg-dark-subtle" th:text="${row.day}"></td>
+                            <td th:classappend="${row.avgClass} + ' border border-white text-white'" th:text="${row.avg}"></td>
+                            <td th:classappend="${row.maxClass} + ' border border-white text-white'" th:text="${row.max}"></td>
+                            <td th:classappend="${row.minClass} + ' border border-white text-white'" th:text="${row.min}"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- PM2.5 Forecast Table -->
+        <div class="col-sm-12 d-inline-flex row mx-auto mb-5">
+            <div class="container col-sm-10 rounded-3 bg-white shadow">
+                <h4>Forecast - PM2.5</h4>
+                <div class="card border border-0 m-2 p-2 bg-dark-subtle">
+                    <table>
+                        <tr class="bg-dark-subtle">
+                            <th>Date</th>
+                            <th>Avg</th>
+                            <th>Max</th>
+                            <th>Min</th>
+                        </tr>
+                        <tr th:each="row : ${pm25Rows}">
+                            <td class="bg-dark-subtle" th:text="${row.day}"></td>
+                            <td th:classappend="${row.avgClass} + ' border text-white'" th:text="${row.avg}"></td>
+                            <td th:classappend="${row.maxClass} + ' border text-white'" th:text="${row.max}"></td>
+                            <td th:classappend="${row.minClass} + ' border text-white'" th:text="${row.min}"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>
